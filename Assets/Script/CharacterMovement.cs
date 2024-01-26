@@ -6,7 +6,7 @@ public class CharacterMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
     public float Horizontal;
-    [SerializeField] float speed;
+    public float speed;
     [SerializeField] bool canJump;
     [SerializeField] float jump;
     void Start()
