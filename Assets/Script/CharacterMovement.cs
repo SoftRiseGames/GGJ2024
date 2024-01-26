@@ -8,30 +8,21 @@ public class CharacterMovement : MonoBehaviour
     public float Horizontal;
     [SerializeField] float speed;
     [SerializeField] bool canJump;
+    [SerializeField] float jump;
     void Start()
     {
         
     }
-    public async void JumpCut()
-    {
-        if (!canJump)
-        {
-            await Task.Delay(1000);
-            rb.velocity = new Vector2(0, -5f);
-        }
-    }
+   
     // Update is called once per frame
     void Update()
     {
         Horizontal = Input.GetAxisRaw("Horizontal");
-
-        /*
         if (rb.velocity.y < 0)
-            rb.gravityScale = 8;
+            rb.gravityScale = 10;
         else
-            rb.gravityScale = 5;
-        */
-        JumpCut();
+            rb.gravityScale = 8;
+  
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -47,6 +38,6 @@ public class CharacterMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(Horizontal * speed * Time.deltaTime, rb.velocity.y);
         if (Input.GetKey(KeyCode.Space) && canJump)
-            rb.velocity = new Vector2(rb.velocity.x, 1000 * Time.deltaTime);
+            rb.velocity = new Vector2(rb.velocity.x, jump * Time.deltaTime);
     }
 }
