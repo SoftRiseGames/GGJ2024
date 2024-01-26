@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Threading.Tasks;
 public class EnemyScript : MonoBehaviour
 {
     [SerializeField] bool isMove;
@@ -36,8 +37,12 @@ public class EnemyScript : MonoBehaviour
                 Debug.Log("a");
 
     }
-    public void DestroyObject()
+    public async void DestroyObject()
     {
+        Debug.Log(Vector2.Distance(this.gameObject.transform.position, character.transform.position));
+        if (Vector2.Distance(this.gameObject.transform.position, character.transform.position) < 3f)
+            character.GetComponent<CharacterMovement>().speed = 500;
+        await Task.Delay(100);
         Destroy(this.gameObject);
     }
 
