@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+[CreateAssetMenu(menuName = "CARDS")]
 
-public class SO_CardTypes : MonoBehaviour
+
+public class SO_CardTypes : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum DialogueTypes
     {
-        
+        Dialogue1,
+        Dialogue2,
+        Dialogue3,
+        Dialogue4
     }
+    public DialogueTypes dialogues;
+    public string name;
+    public Sprite sprite;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
