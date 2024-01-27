@@ -9,9 +9,12 @@ public class CharacterMovement : MonoBehaviour
     public Rigidbody2D rb;
     public float Horizontal;
     public float speed;
+    public bool onGround;
+    public Vector2 bottomoffset;
     [SerializeField] bool canJump;
     [SerializeField] float jump;
-
+    [SerializeField] float collisionRadius;
+    public LayerMask layer;
     public Slider slider;
     void Start()
     {
@@ -33,14 +36,18 @@ public class CharacterMovement : MonoBehaviour
          {
             SceneManager.LoadScene("Menu");
          }
+        if (onGround)
+            canJump = true;
+        else
+            canJump = false;
+
+        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomoffset, collisionRadius, layer);
 
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnDrawGizmos()
     {
-        if(collision.gameObject.tag== "Zemin")
-            canJump = true;
-        
-        
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere((Vector2)transform.position + bottomoffset, collisionRadius);
     }
     async void fixspeed()
     {
@@ -53,11 +60,13 @@ public class CharacterMovement : MonoBehaviour
         if (collision.gameObject.tag == "Clown")
             Debug.Log("b");
     }
+    /*
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Zemin")
             canJump = false;
     }
+    */
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(Horizontal * speed * Time.deltaTime, rb.velocity.y);
