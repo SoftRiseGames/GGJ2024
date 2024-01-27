@@ -42,7 +42,7 @@ public class EnemyScript : MonoBehaviour
                 impulse.GenerateImpulse();
                 character.GetComponent<CharacterMovement>().speed = 500;
                 this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-                this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+                this.gameObject.GetComponent<Animator>().SetBool("shacotime", true);
             }
               
 
