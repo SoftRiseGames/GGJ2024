@@ -30,7 +30,7 @@ public class EnemyScript : MonoBehaviour
     }
     void Balloon()
     {
-        gameObject.transform.DOMove(new Vector3(character.gameObject.transform.position.x - Random.Range(-2,2), character.gameObject.transform.position.y - Random.Range(-2, 2), 10), 1).OnComplete(() => { animator.SetBool("Boom", true); });
+        gameObject.transform.DOMove(new Vector3(character.gameObject.transform.position.x - Random.Range(-1,1), character.gameObject.transform.position.y - Random.Range(-1, 1), 10), 1).OnComplete(() => { animator.SetBool("Boom", true); });
         
     }
     private void OnTriggerEnter2D(Collider2D collision)

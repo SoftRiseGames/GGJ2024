@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8fdbde69221fa4686af0246e386759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 8
   ballPrefab: {fileID: 6245323244558597267, guid: cb1236ebef4c7dd4592fff422a22bd30, type: 3}
   TukurmeNoktasi: {fileID: 8264940796731579800}
   TukurmeAralik: 1
