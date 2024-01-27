@@ -12,7 +12,7 @@ public class BallThrower : MonoBehaviour
     void Start()
     {
         
-        InvokeRepeating("ThrowBalls", TukurmeAralik, TukurmeAralik);
+        InvokeRepeating("ThrowBalls", 2, TukurmeAralik);
     }
 
     void Update()
@@ -31,5 +31,15 @@ public class BallThrower : MonoBehaviour
             Instantiate(ballPrefab, TukurmeNoktasi.position, Quaternion.identity);
             counter += 1;
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Character")
+        {
+            GameObject.Find("Character").GetComponent<CharacterMovement>().speed = 500;
+            this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        }
+
     }
 }

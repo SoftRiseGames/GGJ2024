@@ -19,7 +19,7 @@ public class Ball : MonoBehaviour
     {
         transform.Translate(Vector2.left * speed * Time.deltaTime);
 
-        if (transform.position.y < -5f)
+        if (transform.position.x < -5f)
         {
             Destroy(gameObject);
         }
@@ -29,7 +29,8 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.tag == "Character")
         {
-            slider.value += 50;
+            slider.value += 30;
+            GameObject.Find("Character").GetComponent<CharacterMovement>().speed = 500;
         }
     }
 }
