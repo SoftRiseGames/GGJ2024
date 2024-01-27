@@ -15,7 +15,8 @@ public class BallThrower : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.left * speed * Time.deltaTime);
-    }
+        Destroy(this.gameObject, 7);
+    }                     
 
     void ThrowBalls()
     {

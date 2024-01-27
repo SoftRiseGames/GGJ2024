@@ -33,6 +33,7 @@ public class Ball : MonoBehaviour
             cinemachineImpulseSource.GenerateImpulse();
             Destroy(this.gameObject);
             GameObject.Find("Character").GetComponent<CharacterMovement>().speed = 500;
+            Destroy(this.gameObject, 7);
         }
     }
 }
