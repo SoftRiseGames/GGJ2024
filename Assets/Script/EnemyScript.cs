@@ -39,6 +39,7 @@ public class EnemyScript : MonoBehaviour
             if(collision.gameObject.tag == "Character")
             {
                 slider.value += 30;
+                impulse.GenerateImpulse();
                 character.GetComponent<CharacterMovement>().speed = 500;
                 this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
@@ -53,6 +54,7 @@ public class EnemyScript : MonoBehaviour
         if (Vector2.Distance(gameObject.transform.position, character.transform.position) < 6f)
         {
             slider.value += 30;
+            
             impulse.GenerateImpulse();
             character.GetComponent<CharacterMovement>().speed = 500;
         }
