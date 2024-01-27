@@ -27,7 +27,14 @@ public class CharacterMovement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag== "Zemin")
-            canJump = true; 
+            canJump = true;
+        
+        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Clown")
+            Debug.Log("b");
     }
     private void OnCollisionExit2D(Collision2D collision)
     {

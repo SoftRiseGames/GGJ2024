@@ -103,7 +103,7 @@ MonoBehaviour:
   isMove: 1
   character: {fileID: 0}
   animator: {fileID: 8894841431260542982}
-  enemytype: 1
+  enemytype: 0
 --- !u!95 &8894841431260542982
 Animator:
   serializedVersion: 4

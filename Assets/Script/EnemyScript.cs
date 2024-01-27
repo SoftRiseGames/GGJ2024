@@ -9,6 +9,8 @@ public class EnemyScript : MonoBehaviour
     public Transform character;
     public Animator animator;
 
+
+    
     public enum enemyTypes
     {
         balloon,
@@ -18,16 +20,17 @@ public class EnemyScript : MonoBehaviour
     
     private void Start()
     {
+
+   
+
+        character = GameObject.Find("Character").transform;
         if (enemytype == enemyTypes.balloon)
             Balloon();
+       
     }
     void Balloon()
     {
-        var sequence = DOTween.Sequence();
-        sequence.Append
-        (
-            this.gameObject.transform.DOMove(new Vector3(character.gameObject.transform.position.x - 2, character.gameObject.transform.position.y - 2, 10), 1)
-        ).OnComplete(() => { animator.SetBool("Boom", true);});
+        gameObject.transform.DOMove(new Vector3(character.gameObject.transform.position.x - 2, character.gameObject.transform.position.y - 2, 10), 1).OnComplete(() => { animator.SetBool("Boom", true); });
         
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -39,8 +42,8 @@ public class EnemyScript : MonoBehaviour
     }
     public async void DestroyObject()
     {
-        Debug.Log(Vector2.Distance(this.gameObject.transform.position, character.transform.position));
-        if (Vector2.Distance(this.gameObject.transform.position, character.transform.position) < 3f)
+        Debug.Log(Vector2.Distance(gameObject.transform.position, character.transform.position));
+        if (Vector2.Distance(gameObject.transform.position, character.transform.position) < 3f)
             character.GetComponent<CharacterMovement>().speed = 500;
         await Task.Delay(100);
         Destroy(this.gameObject);
