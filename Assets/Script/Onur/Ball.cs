@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading.Tasks;
-
+using Cinemachine;
 
 public class Ball : MonoBehaviour
 {
     public float speed = 5f;
-    public Slider slider;  
-
+    public Slider slider;
+    public CinemachineImpulseSource cinemachineImpulseSource;
     void Start()
     {
         slider = GameObject.Find("Canvas").transform.GetChild(0).GetComponent<Slider>();
@@ -30,6 +30,8 @@ public class Ball : MonoBehaviour
         if (collision.gameObject.tag == "Character")
         {
             slider.value += 30;
+            cinemachineImpulseSource.GenerateImpulse();
+            Destroy(this.gameObject);
             GameObject.Find("Character").GetComponent<CharacterMovement>().speed = 500;
         }
     }

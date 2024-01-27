@@ -4,12 +4,13 @@ using UnityEngine;
 using DG.Tweening;
 using System.Threading.Tasks;
 using UnityEngine.UI;
+using Cinemachine;
 public class EnemyScript : MonoBehaviour
 {
     [SerializeField] bool isMove;
     public Transform character;
     public Animator animator;
-
+    public CinemachineImpulseSource impulse;
     public Slider slider;
     
     public enum enemyTypes
@@ -29,7 +30,7 @@ public class EnemyScript : MonoBehaviour
     }
     void Balloon()
     {
-        gameObject.transform.DOMove(new Vector3(character.gameObject.transform.position.x - 2, character.gameObject.transform.position.y - 2, 10), 1).OnComplete(() => { animator.SetBool("Boom", true); });
+        gameObject.transform.DOMove(new Vector3(character.gameObject.transform.position.x - Random.Range(-2,2), character.gameObject.transform.position.y - Random.Range(-2, 2), 10), 1).OnComplete(() => { animator.SetBool("Boom", true); });
         
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -49,13 +50,14 @@ public class EnemyScript : MonoBehaviour
     {
         Debug.Log(Vector2.Distance(gameObject.transform.position, character.transform.position));
        
-        if (Vector2.Distance(gameObject.transform.position, character.transform.position) < 3f)
+        if (Vector2.Distance(gameObject.transform.position, character.transform.position) < 6f)
         {
             slider.value += 30;
+            impulse.GenerateImpulse();
             character.GetComponent<CharacterMovement>().speed = 500;
         }
         await Task.Delay(100);
-        this.gameObject.SetActive(false);
+        Destroy(this.gameObject);
     }
 
     void Update()

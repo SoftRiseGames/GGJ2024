@@ -5,16 +5,16 @@ using Cinemachine;
 public class CameraShake : MonoBehaviour
 {
     private CinemachineVirtualCamera cinemachineVirtualCamera;
-    private float ShakeIntensity = 1f;
+    private float ShakeIntensity = 2f;
     private float ShakeTime = 0.2f;
-    private float timer;
+    public float timer;
     private void Awake()
     {
         cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
     }
     void Start()
     {
-        
+        stopShake();
     }
     public void shakeCamera()
     {
@@ -31,14 +31,17 @@ public class CameraShake : MonoBehaviour
         timer = 0;
     }
 
-    void shakeTime()
+    public void shakeTime()
     {
         shakeCamera();
+    }
+    private void Update()
+    {
         if (timer > 0)
             timer -= Time.deltaTime;
-
-        if (timer <= 0) stopShake();
+        if (timer <= 0)
+            stopShake();
 
     }
-   
+
 }
