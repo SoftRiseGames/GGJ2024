@@ -61,7 +61,7 @@ public class CharacterMovement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Clown")
-            Debug.Log("b");
+            SceneManager.LoadScene(2);
     }
 
     void ScaleControl()
@@ -82,9 +82,9 @@ public class CharacterMovement : MonoBehaviour
         else if (Horizontal == 0)
             GetComponent<Animator>().SetBool("isWalk", false);
 
-        if(rb.velocity.y>0)
+        if(Input.GetKey(KeyCode.Space))
             GetComponent<Animator>().SetBool("isJump", true);
-        else
+        else if(canJump)
             GetComponent<Animator>().SetBool("isJump", false);
     }
     /*
