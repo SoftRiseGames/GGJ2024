@@ -12,7 +12,7 @@ public class EnemyScript : MonoBehaviour
     public Animator animator;
     public CinemachineImpulseSource impulse;
     public Slider slider;
-    
+
     public enum enemyTypes
     {
         balloon,
@@ -26,6 +26,8 @@ public class EnemyScript : MonoBehaviour
         character = GameObject.Find("Character").transform;
         if (enemytype == enemyTypes.balloon)
             Balloon();
+
+        
        
     }
     void Balloon()
@@ -43,6 +45,7 @@ public class EnemyScript : MonoBehaviour
                 character.GetComponent<CharacterMovement>().speed = 500;
                 this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 this.gameObject.GetComponent<Animator>().SetBool("shacotime", true);
+                GetComponent<AudioSource>().Play();
             }
               
 
