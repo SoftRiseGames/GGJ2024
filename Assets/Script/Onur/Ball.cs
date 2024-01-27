@@ -1,10 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Threading.Tasks;
+
 
 public class Ball : MonoBehaviour
 {
     public float speed = 5f;
+    public Slider slider;  
+
+    void Start()
+    {
+        slider = GameObject.Find("Canvas").transform.GetChild(0).GetComponent<Slider>();
+    }
 
     void Update()
     {
@@ -16,11 +25,11 @@ public class Ball : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.gameObject.tag == "Character")
         {
-           // Destroy(this.gameObject); ya da  Gülme barý+
+            slider.value += 50;
         }
     }
 }

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Threading.Tasks;       
+using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class CharacterMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
@@ -10,6 +12,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] bool canJump;
     [SerializeField] float jump;
 
+    public Slider slider;
     void Start()
     {
         
@@ -26,8 +29,11 @@ public class CharacterMovement : MonoBehaviour
 
         if (speed == 500)
             fixspeed();
+         if (slider != null && slider.value >= 100)
+         {
+            SceneManager.LoadScene("Menu");
+         }
 
-  
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
