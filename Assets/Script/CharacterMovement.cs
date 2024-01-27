@@ -42,8 +42,11 @@ public class CharacterMovement : MonoBehaviour
             canJump = false;
 
         onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomoffset, collisionRadius, layer);
-
+        ScaleControl();
+        animControl();
     }
+
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -59,6 +62,30 @@ public class CharacterMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Clown")
             Debug.Log("b");
+    }
+
+    void ScaleControl()
+    {
+        if (Horizontal > 0 && this.gameObject.transform.localScale.x < 0)
+            this.gameObject.transform.localScale = new Vector2(this.gameObject.transform.localScale.x * -1, this.gameObject.transform.localScale.y);
+        if (Horizontal < 0 && this.gameObject.transform.localScale.x > 0)
+            this.gameObject.transform.localScale = new Vector2(this.gameObject.transform.localScale.x * -1, this.gameObject.transform.localScale.y);
+
+       
+
+        
+    }
+    void animControl()
+    {
+        if (Horizontal != 0)
+            GetComponent<Animator>().SetBool("isWalk", true);
+        else if (Horizontal == 0)
+            GetComponent<Animator>().SetBool("isWalk", false);
+
+        if(rb.velocity.y>0)
+            GetComponent<Animator>().SetBool("isJump", true);
+        else
+            GetComponent<Animator>().SetBool("isJump", false);
     }
     /*
     private void OnCollisionExit2D(Collision2D collision)
