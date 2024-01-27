@@ -9,6 +9,7 @@ public class CharacterMovement : MonoBehaviour
     public float speed;
     [SerializeField] bool canJump;
     [SerializeField] float jump;
+
     void Start()
     {
         
@@ -22,6 +23,10 @@ public class CharacterMovement : MonoBehaviour
             rb.gravityScale = 10;
         else
             rb.gravityScale = 8;
+
+        if (speed == 500)
+            fixspeed();
+
   
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -30,6 +35,12 @@ public class CharacterMovement : MonoBehaviour
             canJump = true;
         
         
+    }
+    async void fixspeed()
+    {
+        await Task.Delay(3000);
+        speed = 900;
+ 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

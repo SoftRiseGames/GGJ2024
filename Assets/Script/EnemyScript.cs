@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Threading.Tasks;
+using UnityEngine.UI;
 public class EnemyScript : MonoBehaviour
 {
     [SerializeField] bool isMove;
     public Transform character;
     public Animator animator;
 
-
+    public Slider slider;
     
     public enum enemyTypes
     {
@@ -20,9 +21,7 @@ public class EnemyScript : MonoBehaviour
     
     private void Start()
     {
-
-   
-
+        slider = GameObject.Find("Canvas").transform.GetChild(0).transform.GetComponent<Slider>();
         character = GameObject.Find("Character").transform;
         if (enemytype == enemyTypes.balloon)
             Balloon();
@@ -37,14 +36,22 @@ public class EnemyScript : MonoBehaviour
     {
         if(enemytype == enemyTypes.shacobox)
             if(collision.gameObject.tag == "Character")
-                Debug.Log("a");
+            {
+                slider.value += 30;
+                character.GetComponent<CharacterMovement>().speed = 500;
+            }
+              
 
     }
     public async void DestroyObject()
     {
         Debug.Log(Vector2.Distance(gameObject.transform.position, character.transform.position));
+       
         if (Vector2.Distance(gameObject.transform.position, character.transform.position) < 3f)
+        {
+            slider.value += 30;
             character.GetComponent<CharacterMovement>().speed = 500;
+        }
         await Task.Delay(100);
         Destroy(this.gameObject);
     }
