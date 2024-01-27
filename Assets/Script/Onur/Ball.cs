@@ -8,7 +8,7 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Vector3.down * speed * Time.deltaTime);
+        transform.Translate(Vector2.left * speed * Time.deltaTime);
 
         if (transform.position.y < -5f)
         {
