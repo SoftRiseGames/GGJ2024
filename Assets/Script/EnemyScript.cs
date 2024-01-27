@@ -39,6 +39,8 @@ public class EnemyScript : MonoBehaviour
             {
                 slider.value += 30;
                 character.GetComponent<CharacterMovement>().speed = 500;
+                this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
             }
               
 
@@ -53,7 +55,7 @@ public class EnemyScript : MonoBehaviour
             character.GetComponent<CharacterMovement>().speed = 500;
         }
         await Task.Delay(100);
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 
     void Update()
