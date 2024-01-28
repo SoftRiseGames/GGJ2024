@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Threading.Tasks;
 using Cinemachine;
-
+using System.Threading.Tasks;
 public class Ball : MonoBehaviour
 {
     public AudioSource audioSource;
@@ -20,11 +20,7 @@ public class Ball : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.left * speed * Time.deltaTime);
-
-        if (transform.position.x < -5f)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(this.gameObject, 7);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -34,9 +30,9 @@ public class Ball : MonoBehaviour
             audioSource.Play();
             slider.value += 30;
             cinemachineImpulseSource.GenerateImpulse();
-            Destroy(this.gameObject);
+            GameObject.Find("Character").GetComponent<AudioSource>().Play();
             GameObject.Find("Character").GetComponent<CharacterMovement>().speed = 500;
-            Destroy(this.gameObject, 7);      
+            Destroy(this.gameObject);
         }
     }
 }
