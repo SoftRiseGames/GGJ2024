@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1d586e199addbb41bc954d8e74642b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 6419869000423353501}
   speed: 10
   slider: {fileID: 0}
   cinemachineImpulseSource: {fileID: 8029125408535776191}
@@ -204,7 +205,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ac1f67f53f5902d4bb0028e70e91385b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
