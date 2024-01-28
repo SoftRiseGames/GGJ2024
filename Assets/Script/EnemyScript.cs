@@ -62,7 +62,7 @@ public class EnemyScript : MonoBehaviour
             impulse.GenerateImpulse();
             character.GetComponent<CharacterMovement>().speed = 500;
         }
-        await Task.Delay(100);
+        await Task.Delay(200);
         Destroy(this.gameObject);
     }
 

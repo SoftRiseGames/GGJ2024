@@ -36,7 +36,7 @@ public class CharacterMovement : MonoBehaviour
          {
             SceneManager.LoadScene("Menu");
          }
-        if (onGround)
+        if (onGround && rb.velocity.y<=0)
             canJump = true;
         else
             canJump = false;
