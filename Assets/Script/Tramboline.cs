@@ -11,6 +11,7 @@ public class Tramboline : MonoBehaviour
         if (collision.gameObject.tag == "Character")
         {
             cinemachineImpulseSource.GenerateImpulse();
+            GetComponent<AudioSource>().Play();
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bounce, ForceMode2D.Impulse);
         }

@@ -53,11 +53,12 @@ public class EnemyScript : MonoBehaviour
     public async void DestroyObject()
     {
         Debug.Log(Vector2.Distance(gameObject.transform.position, character.transform.position));
-       
+        GetComponent<AudioSource>().Play();
         if (Vector2.Distance(gameObject.transform.position, character.transform.position) < 6f)
         {
             slider.value += 30;
-            
+
+        GetComponent<AudioSource>().Play();
             impulse.GenerateImpulse();
             character.GetComponent<CharacterMovement>().speed = 500;
         }
